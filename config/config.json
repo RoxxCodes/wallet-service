@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "walletUser",
+    "password": "password",
+    "database": "wallet",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "walletUser",
+    "password": "password",
+    "database": "wallet",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "walletUser",
+    "password": "password",
+    "database": "wallet",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

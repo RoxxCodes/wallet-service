@@ -1,0 +1,46 @@
+{
+  "name": "wallet-service",
+  "version": "1.0.0",
+  "description": "wallet service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node lib/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "config": "^3.3.12",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "helmet": "^7.0.0",
+    "mysql2": "^3.13.0",
+    "sequelize": "^6.37.6",
+    "uuid": "^11.1.0",
+    "umzug": "^3.8.2",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "sequelize-cli": "^6.6.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mysql",
+    "sequelize",
+    "docker"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoxxCodes/wallet-service.git"
+  },
+  "author": "RoxxCodes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RoxxCodes/wallet-service/issues"
+  },
+  "homepage": "https://github.com/RoxxCodes/wallet-service#readme"
+}

@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: "mysql"
+      DB_NAME: "mydatabase"
+      DB_USER: "root"
+      DB_PASSWORD: "mypassword"
+
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "mypassword"
+      MYSQL_DATABASE: "mydatabase"
+    ports:
+      - "3306:3306"
