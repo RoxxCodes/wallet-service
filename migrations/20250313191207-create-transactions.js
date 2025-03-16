@@ -14,7 +14,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         references: { model: "Wallets", key: "id" }, // ✅ Foreign key reference
-        onDelete: "CASCADE"
+        onDelete: "RESTRICT",
       },
       amount: {
         type: Sequelize.DECIMAL(10, 4),
