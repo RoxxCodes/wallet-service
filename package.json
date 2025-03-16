@@ -2,10 +2,12 @@
   "name": "wallet-service",
   "version": "1.0.0",
   "description": "wallet service",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node lib/server.js",
+    "migrate": "npx sequelize-cli db:migrate",
+    "deploy": "npm run migrate && npm start",
     "dev": "nodemon src/server.js"
   },
   "dependencies": {

@@ -1,24 +1,54 @@
 version: "3.8"
 
 services:
-  app:
-    build: .
-    restart: always
-    depends_on:
-      - mysql
-    ports:
-      - "3000:3000"
-    environment:
-      DB_HOST: "mysql"
-      DB_NAME: "mydatabase"
-      DB_USER: "root"
-      DB_PASSWORD: "mypassword"
-
-  mysql:
-    image: mysql:latest
+  mysql-db:
+    image: mysql:8
+    container_name: mysql-wallet
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: "mypassword"
-      MYSQL_DATABASE: "mydatabase"
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wallet_db
+      MYSQL_USER: wallet_user
+      MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app_network
+    healthcheck:  # ✅ Ensures MySQL is ready before starting wallet-service
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "wallet_user", "-ppassword"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+  wallet-service:
+    build: .
+    container_name: wallet-api
+    restart: always
+    depends_on:
+      mysql-db:
+        condition: service_healthy  # ✅ Ensures MySQL is fully initialized
+    environment:
+      NODE_ENV: production
+      DB_HOST: mysql-db  # ✅ Use MySQL service name instead of localhost
+      DB_USER: wallet_user
+      DB_PASSWORD: password
+      DB_NAME: wallet_db
+      DB_DIALECT: mysql
+      DB_PORT: 3306
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["sh", "-c", "sleep 15 && npm run deploy"]  # ✅ Delay app startup to wait for MySQL
+    networks:
+      - app_network
+
+volumes:
+  mysql_data:
+
+networks:
+  app_network:
