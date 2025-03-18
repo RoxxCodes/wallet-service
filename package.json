@@ -19,11 +19,11 @@
     "sequelize": "^6.37.6",
     "uuid": "^11.1.0",
     "umzug": "^3.8.2",
-    "winston": "^3.17.0"
+    "winston": "^3.17.0",
+    "sequelize-cli": "^6.6.2"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2",
-    "sequelize-cli": "^6.6.2"
+    "nodemon": "^3.0.2"
   },
   "engines": {
     "node": ">=18.0.0"
